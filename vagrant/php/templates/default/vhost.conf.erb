@@ -1,0 +1,13 @@
+# Override the Apache User (vhosts are included at the end of apache2.conf)
+User vagrant
+Group vagrant
+
+
+
+<VirtualHost *:80>
+  Servername amazeelabs.lo
+  DocumentRoot /vagrant
+  CustomLog /var/log/apache2/amazeelabs.access.log common
+  ErrorLog /var/log/apache2/amazeelabs.error.log
+  php_value error_log /var/log/apache2/amazeelabs.php.error.log
+</VirtualHost>
