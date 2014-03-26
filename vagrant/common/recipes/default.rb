@@ -10,16 +10,6 @@ execute "apt-get-update" do
   not_if do ::File.exists?('/var/lib/apt/periodic/update-success-stamp') end
 end
 
-# install python-software properties to enable add-apt-repo
-package "python-software-properties"
-
-# Add Ondrej's php5 repository
-execute "Add Ondrej's php5 repository" do
-  command "add-apt-repository ppa:ondrej/php5-oldstable"
-  ignore_failure true
-end
-
-
 # For other recipes to call to force an update
 execute "apt-get update" do
   command "apt-get update"

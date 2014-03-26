@@ -5,15 +5,15 @@ directory "/opt/drush" do
     action :create
 end
 
-ssh_known_hosts_entry 'github.com'
+template "/opt/drush/composer.json" do
+    source "composer.json"
+end
 
-git "/opt/drush" do
-    repository "git@github.com:AmazeeLabs/drush.git"
-    revision "master"
-    user "vagrant"
-    action :sync
+execute "composer install" do
+    cwd "/opt/drush"
+    action :run
 end
 
 link "/usr/bin/drush" do
-    to "/opt/drush/drush"
+    to "/opt/drush/vendor/bin/drush"
 end

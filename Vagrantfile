@@ -1,6 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# The URL where everything will run from
+HOSTNAME = "vagrant.lo"
+
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
@@ -22,6 +25,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.network :forwarded_port, guest: 80, host: 8080
   #config.vm.network :forwarded_port, guest: 3306, host: 3306
 
+
+  config.vm.hostname = HOSTNAME
+
+  config.hostsupdater.aliases = ["xhprof." + HOSTNAME]
+
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network :private_network, ip: "100.100.100.100"
@@ -40,7 +48,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder ".", "/vagrant" , :nfs => true
+  config.vm.synced_folder "/Users/bastianwidmer/Amazee/drupal", "/home/vagrant/public_html" , :nfs => true
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -114,18 +122,44 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   chef.validation_key_path = "ORGNAME-validator.pem"
   # end
 
+  if Vagrant.has_plugin?("vagrant-cachier")
+    # Configure cached packages to be shared between instances of the same base box.
+    # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
+    config.cache.scope = :box
+
+    # If you are using VirtualBox, you might want to use that to enable NFS for
+    # shared folders. This is also very useful for vagrant-libvirt if you want
+    # bi-directional sync
+    config.cache.synced_folder_opts = {
+      type: :nfs,
+      # The nolock option can be useful for an NFSv3 client that wants to avoid the
+      # NLM sideband protocol. Without this option, apt-get might hang if it tries
+      # to lock files needed for /var/cache/* operations. All of this can be avoided
+      # by using NFSv4 everywhere. Please note that the tcp option is not the default.
+      mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
+    }
+    # For more information please check http://docs.vagrantup.com/v2/synced-folders/basic_usage.html
+  end
+
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "vagrant"
     chef.log_level = ENV['CHEF_LOG'] || "info"
 
+    chef.json = {
+        ":hostname" => HOSTNAME
+    }
+
     # recipes
     chef.add_recipe("common")
-    chef.add_recipe("php")
+    chef.add_recipe("php::php54")
+    chef.add_recipe("php::php-additions")
+    chef.add_recipe("xhprof")
+    chef.add_recipe("composer")
     chef.add_recipe("drush")
+    chef.add_recipe("drush::deploy")
+    chef.add_recipe("drupal::drupal-settings")
+    chef.add_recipe("drupal::mysql-database")
   end
-
-
-
 
   #
   # If you're using the Opscode platform, your validator client is

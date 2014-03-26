@@ -1,0 +1,8 @@
+<?php
+return array(
+  'url_base' => 'http://<%= node['xhprof']['domain'] %>/',
+  'url_static' => null, // When undefined, it defaults to $config['url_base'] . 'public/'. This should be absolute URL.
+  'pdo' => new PDO('mysql:dbname=<%= node['xhprof']['database']['name'] %>;host=<%= node['xhprof']['database']['host'] %>;charset=utf8', '<%= node['xhprof']['database']['user'] %>', '<%= node['xhprof']['database']['pass'] %>'),
+);
+
+
