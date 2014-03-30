@@ -5,8 +5,10 @@ directory "/opt/drush" do
     action :create
 end
 
-template "/opt/drush/composer.json" do
+# Composer Json holds information about what drush verison we need
+cookbook_file "/opt/drush/composer.json" do
     source "composer.json"
+    action :create_if_missing
 end
 
 execute "composer install" do
