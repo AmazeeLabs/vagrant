@@ -1,6 +1,4 @@
-
 # http://pear.php.net/manual/en/guide.users.commandline.channels.php
-
 require 'chef/mixin/shell_out'
 require 'chef/mixin/language'
 include Chef::Mixin::ShellOut

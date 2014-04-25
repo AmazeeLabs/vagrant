@@ -9,11 +9,8 @@ package 'php-apc'
 package 'php5-xmlrpc'
 package 'php5-imagick'
 package 'php5-xdebug'
-
-
 package 'php-pear'
 package 'build-essential'
-
 
 # update the main channels
 php_pear_channel 'pear.php.net' do
