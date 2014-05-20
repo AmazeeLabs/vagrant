@@ -142,7 +142,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "vagrant/vagrant"
+    chef.cookbooks_path = "vagrant"
     chef.log_level = ENV['CHEF_LOG'] || "info"
 
     chef.json = {
