@@ -1,6 +1,3 @@
-# install python-software properties to enable add-apt-repo
-package "python-software-properties"
-
 # Add Ondrej's php5 repository
 execute "Add Ondrej's php5 repository" do
   command "add-apt-repository ppa:ondrej/php5"
