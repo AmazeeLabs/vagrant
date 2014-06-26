@@ -141,6 +141,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # For more information please check http://docs.vagrantup.com/v2/synced-folders/basic_usage.html
   end
 
+  ## Add Gitconfig to VM - see https://github.com/mitchellh/vagrant/issues/3021
+  config.vm.provision :file, source: '~/.gitconfig', destination: '/home/vagrant/.gitconfig' if File.exists?(ENV['HOME'] + '/.gitconfig')
+
+  ## Provision Box with Chef
   config.vm.provision :chef_solo do |chef|
     # For using it as submodule in Projects
     chef.cookbooks_path = "vagrant/vagrant"
