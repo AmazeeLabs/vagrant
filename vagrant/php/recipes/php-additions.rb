@@ -57,3 +57,10 @@ service "apache2" do
   supports :restart => true, :reload => true, :status => true
   action [ :enable, :start ]
 end
+
+template "/etc/php5/apache2/conf.d/zz-amazeelabs.ini" do
+  source "zz-amazeelabs.ini.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+end
