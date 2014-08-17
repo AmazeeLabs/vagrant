@@ -66,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # information on available options.
 
   config.vm.provider :virtualbox do |vm|
-    vm.customize ["modifyvm", :id, "--memory", "1024"]
+    vm.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
   if not RUBY_PLATFORM.downcase.include?("mswin")
