@@ -70,8 +70,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   if not RUBY_PLATFORM.downcase.include?("mswin")
-    config.vm.customize ["modifyvm", :id, "--cpus",
-      `awk "/^processor/ {++n} END {print n}" /proc/cpuinfo 2> /dev/null || sh -c 'sysctl hw.logicalcpu 2> /dev/null || echo ": 2"' | awk \'{print \$2}\' `.chomp ]
+    config.vm.provider :virtualbox do |vm|
+      vm.customize ["modifyvm", :id, "--cpus", `awk "/^processor/ {++n} END {print n}" /proc/cpuinfo 2> /dev/null || sh -c 'sysctl hw.logicalcpu 2> /dev/null || echo ": 2"' | awk \'{print \$2}\' `.chomp ]
+    end
   end
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
