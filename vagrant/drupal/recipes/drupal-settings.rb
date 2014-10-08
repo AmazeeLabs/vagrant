@@ -1,6 +1,7 @@
 template "/home/vagrant/public_html/sites/default/settings.local.php" do
   source "settings.local.php.erb"
   variables({
+     :base_url => 'http://' + node[':hostname'],
      :database => 'drupal',
      :username => 'root',
      :password => '',
