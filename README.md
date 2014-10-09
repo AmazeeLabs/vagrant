@@ -6,17 +6,17 @@ Internal Documentation : http://confluence.amazeelabs.com/display/KNOWLEDGE/Vagr
 Git Submodule Usage
 ===================
 
- 1.) git submodule add vagrant git@github.com:AmazeeLabs/vagrant.git
- 1.) git submodule update --init
- 1.) copy the vagrant/Vagantfile.dist to your project root
- 1.) vagrant up
- 1.) enjoy!
+ 1. git submodule add vagrant git@github.com:AmazeeLabs/vagrant.git
+ 1. git submodule update --init
+ 1. copy the vagrant/Vagantfile.dist to your project root
+ 1. vagrant up
+ 1. enjoy!
 
 Standalone Usage
 ================
 
- 1.) copy Vagrantfile.dist to Vagrantfile
- 1.) Uncomment the Line which checks for the recipe folder to setup your environment (search for chef.cookbooks_path)
- 1.) vagrant up
- 1.) enjoy!
+ 1. copy Vagrantfile.dist to Vagrantfile
+ 1. Uncomment the Line which checks for the recipe folder to setup your environment (search for chef.cookbooks_path)
+ 1. vagrant up
+ 1. enjoy!
 
