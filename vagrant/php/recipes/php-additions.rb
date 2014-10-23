@@ -39,6 +39,13 @@ template "/etc/php5/apache2/php.ini" do
   notifies :reload, "service[apache2]"
 end
 
+directory "/etc/php5/mods-available" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+end
+
 template "/etc/php5/mods-available/xdebug.ini" do
   source "xdebug.ini.erb"
   mode "0644"
