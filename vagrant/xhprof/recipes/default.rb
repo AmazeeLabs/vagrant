@@ -11,8 +11,6 @@ directory "/opt/xhprof" do
     action :create
 end
 
-
-ssh_known_hosts_entry 'github.com'
 git "/opt/xhprof" do
     repository "git@github.com:gajus/xhprof.io.git"
     revision "master"
