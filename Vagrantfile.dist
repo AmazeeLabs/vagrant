@@ -25,7 +25,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.network :forwarded_port, guest: 80, host: 8080
   #config.vm.network :forwarded_port, guest: 3306, host: 3306
 
-
   config.vm.hostname = HOSTNAME
 
   config.hostsupdater.aliases = ["xhprof." + HOSTNAME]
@@ -170,6 +169,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe("composer")
     chef.add_recipe("drush")
     chef.add_recipe("drush::deploy")
+    chef.add_recipe("drush::savesync")
     chef.add_recipe("drupal::drupal-settings")
     chef.add_recipe("drupal::mysql-database")
     #chef.add_recipe("ruby::rvm")
