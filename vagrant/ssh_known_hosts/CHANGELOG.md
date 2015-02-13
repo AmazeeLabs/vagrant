@@ -1,6 +1,22 @@
-ssh_known_hosts Cookbook CHANGELOG
-==================================
-This file is used to list changes made in each version of the ssh_known_hosts cookbook.
+v2.0.0 (2014-12-02)
+-------------------
+- [#36] Fix the way keys are rendered
+- [#22] Update to README
+- [#32] Clean up logging
+- [#23] Do not hash public keys
+- [#34] Serverspec updates
+- [#28] Add data bag caching option
+- [#20] Add checspec matchers
+- [#33] Add test to verify chefspec matcher
+
+v1.3.2 (2014-04-23)
+-------------------
+- [COOK-4579] - Do not use ssh-keyscan stderr
+
+
+v1.3.0 (2014-04-09)
+-------------------
+- [COOK-4489] Updated ssh-keyscan to include -t type
 
 
 v1.2.0 (2014-02-18)
