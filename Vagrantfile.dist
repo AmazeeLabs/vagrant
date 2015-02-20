@@ -155,7 +155,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.cookbooks_path = "vagrant/vagrant"
     # For using it as standalone vagrant box
     #chef.cookbooks_path = "vagrant"
-    chef.install = false
     chef.log_level = ENV['CHEF_LOG'] || "info"
 
     chef.json = {
