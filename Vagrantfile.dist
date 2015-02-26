@@ -1,6 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Require Vagrant Version 1.7.2
+Vagrant.require_version ">= 1.7.2"
+
 # The URL where everything will run from
 HOSTNAME = "vagrant.lo"
 
@@ -163,6 +166,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # recipes
     chef.add_recipe("common")
+    chef.add_recipe("ssh_known_hosts::amazee")
     chef.add_recipe("php::php54")
     chef.add_recipe("php::php-additions")
     chef.add_recipe("xhprof")
