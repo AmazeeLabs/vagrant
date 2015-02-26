@@ -1,6 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Require Vagrant Version 1.7.2
+Vagrant.require_version ">= 1.7.2"
+
 # The URL where everything will run from
 HOSTNAME = "vagrant.lo"
 
