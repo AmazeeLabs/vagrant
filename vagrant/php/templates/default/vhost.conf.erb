@@ -10,4 +10,5 @@ Group vagrant
   CustomLog /var/log/apache2/<%= node[':hostname'] %>.access.log common
   ErrorLog /var/log/apache2/<%= node[':hostname'] %>.error.log
   php_value error_log /var/log/apache2/<%= node[':hostname'] %>.php.error.log
+  php_admin_value auto_prepend_file "/opt/xhprof/external/header.php"
 </VirtualHost>
