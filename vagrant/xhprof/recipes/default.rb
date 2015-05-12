@@ -12,7 +12,7 @@ directory "/opt/xhprof" do
 end
 
 git "/opt/xhprof" do
-    repository "git@github.com:AmazeeLabs/xhprof.git"
+    repository "https://github.com/AmazeeLabs/xhprof.git"
     revision "master"
     user "vagrant"
     action :sync
